@@ -1,0 +1,11 @@
+.modal {
+  position: absolute;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
+  overflow-y: hidden;
+  display: grid;
+  place-items: center;
+  background-color: rgba(240, 255, 255, 0.411);
+  backdrop-filter: blur(16px);
+}
