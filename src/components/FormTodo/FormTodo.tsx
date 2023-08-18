@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './FormTodo.scss'
 import { GrFormClose } from 'react-icons/gr'
 import { TodoContext } from '../../providers/TodoProvider'
@@ -8,41 +8,43 @@ interface Props {
   id?: string
 }
 
-export const FormTodo: React.FC<Props> = ({ id }) => {
-  let colorPalette = [
-    { name: 'Peach', code: '#FFDAB9', cheked: false },
-    { name: 'Lavender', code: '#E6E6FA', cheked: false },
-    { name: 'Mint', code: '#98FB98', cheked: false },
-    { name: 'Sky Blue', code: '#87CEEB', cheked: false },
-    { name: 'Coral', code: '#FF6F61', cheked: false },
-    { name: 'Lilac', code: '#C8A2C8', cheked: false },
-    { name: 'Aqua', code: '#00FFFF', cheked: false }
-  ];
-  
-  let formDefault: Todo = {
-    id: crypto.randomUUID(),
-    color: '#7e7e7e',
-    title: '',
-    description: '',
-    completed: false
-  }
+let colorPalette = [
+  { name: 'Peach', code: '#FFDAB9', cheked: false },
+  { name: 'Lavender', code: '#E6E6FA', cheked: false },
+  { name: 'Mint', code: '#98FB98', cheked: false },
+  { name: 'Sky Blue', code: '#87CEEB', cheked: false },
+  { name: 'Coral', code: '#FF6F61', cheked: false },
+  { name: 'Lilac', code: '#C8A2C8', cheked: false },
+  { name: 'Aqua', code: '#00FFFF', cheked: false }
+];
 
+let formDefault: Todo = {
+  id: crypto.randomUUID(),
+  color: '#7e7e7e',
+  title: '',
+  description: '',
+  completed: false
+}
+
+export const FormTodo: React.FC<Props> = ({ id }) => {
   const {setOpenModal, setOpenEditModal, todos, setFilterTodos, setTodos} = useContext(TodoContext)
   const [colors, setColors] = useState(colorPalette)
   const [form, setForm] = useState<Todo>(formDefault)
   const isEdit = (id && id.length > 0) ? true : false
 
+  useEffect(() => {
+    if(isEdit) {
+      const newFormDefault = todos.filter(todo => todo.id === id)[0]
+      setForm(newFormDefault)
+  
+      const newColorPallete = colorPalette.filter(color => {
+        if(color.code === newFormDefault.color) return {...color, cheked: true}
+        return color
+      })
+      setColors(newColorPallete)
+    }
+  }, [])
 
-  if(isEdit) {
-    const newFormDefault = todos.filter(todo => todo.id === id)[0]
-    formDefault = newFormDefault
-
-    const newColorPallete = colorPalette.filter(color => {
-      if(color.code === newFormDefault.color) return {...color, cheked: true}
-      return color
-    })
-    colorPalette = newColorPallete
-  }
 
 
   function changeColor(event: React.ChangeEvent<HTMLInputElement>){
@@ -114,12 +116,12 @@ export const FormTodo: React.FC<Props> = ({ id }) => {
       onSubmit={handleSubmit}
       style={{backgroundColor: `${form.color}`}}
     >
-      <button className='todo-form__close' onClick={handleBack}>
+      <button type='button' className='todo-form__close' onClick={handleBack}>
         <GrFormClose/>
       </button>  
       <label className='todo-form__title'>
         Que tienes que hacer?
-        <input 
+        <input
           type="text" 
           name="title"
           value={form.title} 
@@ -154,12 +156,13 @@ export const FormTodo: React.FC<Props> = ({ id }) => {
       </div>
 
       <div className='todo-form__buttons'>
-        <button 
+        <button
+          type='button'
           className='todo-form__btn todo-form__btn--close' 
           onClick={handleBack}>
             Cancelar
         </button>
-        <button 
+        <button
           className='todo-form__btn todo-form__btn--submit' 
           type='submit'>
           {isEdit ? 'Editar' : 'Crear'}
