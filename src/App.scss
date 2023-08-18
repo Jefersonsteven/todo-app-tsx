@@ -1,0 +1,36 @@
+.main {
+  padding-inline: 30px;
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-block: 30px;
+  }
+  &__info {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+  }
+  &__logo {
+    width: 20px;
+    height: 20px;
+  }
+  &__title {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+  }
+  &__technologies {
+    display: flex;
+    gap: 5px
+  }
+}
+
+.btn {
+  border: none;
+  height: 40px;
+  width: auto;
+  & svg {
+    height: 100%;
+    width: auto;
+  }
+}

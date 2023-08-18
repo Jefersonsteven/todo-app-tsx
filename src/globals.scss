@@ -10,8 +10,15 @@ html {
 
 body {
   font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(31, 31, 31);
+  background-color: azure;
 }
 
 ul {
   list-style: none;
+}
+
+button {  
+  cursor: pointer;
 }

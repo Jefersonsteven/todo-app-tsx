@@ -1,4 +1,4 @@
-import { BiAddToQueue } from 'react-icons/bi'
+import { IoAdd } from 'react-icons/io5'
 import './ButtonAddTodo.scss'
 import { useContext } from 'react'
 import { TodoContext } from '../../providers/TodoProvider'
@@ -10,8 +10,8 @@ export const ButtonAddTodo = () => {
     setOpenModal(true)
   }
   return (
-    <button onClick={handleClick} className='btn-add' aria-label='Agregar otra tarea'>
-      <BiAddToQueue />
+    <button onClick={handleClick} className='btn btn-add' aria-label='Agregar otra tarea'>
+      <IoAdd />
     </button>
   )
 }

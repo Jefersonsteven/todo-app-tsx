@@ -35,7 +35,13 @@ export const Searchbar = () => {
   return (
     <div className='search'>  
       <GrSearch />
-      <input className='search__input' type="text" value={search} onChange={handleInput}/>
+      <input
+        placeholder='Buscar tarea'
+        className='search__input' 
+        type="text" 
+        value={search} 
+        onChange={handleInput}
+      />
     </div>
   )
 }
