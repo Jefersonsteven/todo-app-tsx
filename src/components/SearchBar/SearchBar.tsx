@@ -8,8 +8,8 @@ export const Searchbar = () => {
   const {
     filterTodos,
     setTodos,
-    setFilter, 
-    search, 
+    setFilter,
+    search,
     setSearch
   } = useContext<TodoContextType>(TodoContext)
 

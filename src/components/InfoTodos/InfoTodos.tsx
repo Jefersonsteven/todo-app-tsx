@@ -27,21 +27,21 @@ export const InfoTodos = () => {
   return (
     <div className='info-todos'>
       <button 
-        className={`${filter === 'complete' ? 'select-filter' : ''}`} 
+        className={`btn btn--filter ${filter === 'complete' ? 'info-todos__select' : 'info-todos__not-select'}`} 
         onClick={handleClick} 
         data-type="complete"
       >
           Completados: {complete}
       </button>
       <button 
-        className={`${filter === 'pending' ? 'select-filter' : ''}`} 
+        className={`btn btn--filter ${filter === 'pending' ? 'info-todos__select' : 'info-todos__not-select'}`} 
         onClick={handleClick} 
         data-type="pending"
       >
         Pendientes: {pending}
       </button>
       <button 
-        className={`${filter === 'total' ? 'select-filter' : ''}`} 
+        className={`btn  btn--filter ${filter === 'total' ? 'info-todos__select' : 'info-todos__not-select'}`} 
         onClick={handleClick} 
         data-type="total"
       >
