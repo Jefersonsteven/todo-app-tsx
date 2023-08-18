@@ -22,7 +22,6 @@ let formDefault: Todo = {
   completed: false
 }
 
-
 interface Props {
   id?: string
 }
@@ -69,9 +68,19 @@ export const FormTodo: React.FC<Props> = ({ id }) => {
     })
   }
 
-  function handleBack () {  
+  function handleBack () {
     if(isEdit) setOpenEditModal(false)
     else setOpenModal(false)
+
+    const newForm: Todo = {
+      id: crypto.randomUUID(),
+      color: '#7e7e7e',
+      title: '',
+      description: '',
+      completed: false
+    }
+
+    formDefault = newForm
   }
 
   function handleSubmit() {
