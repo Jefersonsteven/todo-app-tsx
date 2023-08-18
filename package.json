@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "predeploy": "npm run build",
+    "predeploy": "pnpm run build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -35,6 +35,5 @@
     "sass-loader": "^13.3.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  },
-  "homepage": "https://github.com/Jefersonsteven/todo-app-tsx"
+  }
 }
