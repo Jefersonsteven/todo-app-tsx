@@ -4,29 +4,29 @@ import { GrFormClose } from 'react-icons/gr'
 import { TodoContext } from '../../providers/TodoProvider'
 import { Todo } from '../../types';
 
-let colorPalette = [
-  { name: 'Peach', code: '#FFDAB9', cheked: false },
-  { name: 'Lavender', code: '#E6E6FA', cheked: false },
-  { name: 'Mint', code: '#98FB98', cheked: false },
-  { name: 'Sky Blue', code: '#87CEEB', cheked: false },
-  { name: 'Coral', code: '#FF6F61', cheked: false },
-  { name: 'Lilac', code: '#C8A2C8', cheked: false },
-  { name: 'Aqua', code: '#00FFFF', cheked: false }
-];
-
-let formDefault: Todo = {
-  id: crypto.randomUUID(),
-  color: '#7e7e7e',
-  title: '',
-  description: '',
-  completed: false
-}
-
 interface Props {
   id?: string
 }
 
 export const FormTodo: React.FC<Props> = ({ id }) => {
+  let colorPalette = [
+    { name: 'Peach', code: '#FFDAB9', cheked: false },
+    { name: 'Lavender', code: '#E6E6FA', cheked: false },
+    { name: 'Mint', code: '#98FB98', cheked: false },
+    { name: 'Sky Blue', code: '#87CEEB', cheked: false },
+    { name: 'Coral', code: '#FF6F61', cheked: false },
+    { name: 'Lilac', code: '#C8A2C8', cheked: false },
+    { name: 'Aqua', code: '#00FFFF', cheked: false }
+  ];
+  
+  let formDefault: Todo = {
+    id: crypto.randomUUID(),
+    color: '#7e7e7e',
+    title: '',
+    description: '',
+    completed: false
+  }
+
   const {setOpenModal, setOpenEditModal, todos, setFilterTodos, setTodos} = useContext(TodoContext)
   const [colors, setColors] = useState(colorPalette)
   const [form, setForm] = useState<Todo>(formDefault)
