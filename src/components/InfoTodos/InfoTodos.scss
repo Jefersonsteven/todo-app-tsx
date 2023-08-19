@@ -1,6 +1,7 @@
 .info-todos {
   display: flex;
   justify-content: space-between;
+  gap: 25px;
   &__select {
     color: rgb(23, 97, 236);
     font-weight: 800;

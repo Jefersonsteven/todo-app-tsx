@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 20px;
   &__todo {
+    position: relative;
     min-width: 260px;
     padding: 20px;
     border-radius: 16px;
@@ -21,7 +22,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     &__todo {
-      position: relative;
       width: 260px;
     }
   }
