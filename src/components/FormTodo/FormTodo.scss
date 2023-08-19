@@ -1,4 +1,5 @@
 .todo-form {
+  animation: swap 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -95,5 +96,14 @@
   }
   &__btn--submit:hover {
     background-color: rgb(23, 67, 236);
+  }
+}
+
+@keyframes swap {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

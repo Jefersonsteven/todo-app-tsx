@@ -73,9 +73,11 @@ export const TodoItem: React.FC<Todo> = ({
       {openModal && 
         <div className='modal-delete'>
           <div className='modal-delete__content'>
-            <p>Estas Seguro ?!</p>
-            <button onClick={() => setOpenModal(currentOpen => !currentOpen)}>Cancelar</button>
-            <button onClick={handleDeleteTodo}>Eliminar</button>
+            <p className='modal-delete__title'>Estas Seguro ?!</p>
+            <div className='modal-delete__buttons'>
+              <button className='btn modal-delete__button modal-delete__button--cancel' onClick={() => setOpenModal(currentOpen => !currentOpen)}>Cancelar</button>
+              <button className='btn modal-delete__button modal-delete__button--delete' onClick={handleDeleteTodo}>Eliminar</button>
+            </div>
           </div>
         </div>
       }

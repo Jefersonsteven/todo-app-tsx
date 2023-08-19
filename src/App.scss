@@ -1,7 +1,6 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 20px;
   padding-inline: 30px;
   height: 100%;
@@ -44,8 +43,40 @@
   padding: 5px;
   font-size: 1rem;
   border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+}
+
+@media (width >= 350px) {
+  .main {
+    padding-inline: 50px;
+    padding-block: 50px;
+    &__logo {
+      width: 30px;
+      height: 30px;
+    }
+    &__title {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (width >= 400px) {
+  .main {
+    max-width: 700px;
+    gap: 40px;
+    &__logo {
+      width: 40px;
+      height: 40px;
+    }
+    &__title {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+@media (width >= 450px) {
+  .btn--filter {
+    padding: 5px 10px;
+    font-size: 1.4rem;
+    border-radius: 5px;
+  }
 }

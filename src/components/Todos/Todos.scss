@@ -3,11 +3,43 @@
   flex-direction: column;
   gap: 20px;
   &__todo {
+    min-width: 260px;
     padding: 20px;
     border-radius: 16px;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
     -ms-border-radius: 16px;
     -o-border-radius: 16px;
+    animation: swapTodo 0.3s ease-in-out;
+    -webkit-animation: swapTodo 0.3s ease-in-out;
+  }
+}
+
+@media (width >= 600px) {
+  .todos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    &__todo {
+      position: relative;
+      width: 260px;
+    }
+  }
+}
+
+@keyframes swapTodo {
+  0% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
   }
 }
