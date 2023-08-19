@@ -9,13 +9,13 @@ interface Props {
 }
 
 let colorPalette = [
-  { name: 'Peach', code: '#FFDAB9', cheked: false },
-  { name: 'Lavender', code: '#E6E6FA', cheked: false },
-  { name: 'Mint', code: '#98FB98', cheked: false },
-  { name: 'Sky Blue', code: '#87CEEB', cheked: false },
-  { name: 'Coral', code: '#FF6F61', cheked: false },
-  { name: 'Lilac', code: '#C8A2C8', cheked: false },
-  { name: 'Aqua', code: '#00FFFF', cheked: false }
+  { name: 'Peach', code: '#FFDAB9', checked: false },
+  { name: 'Lavender', code: '#E6E6FA', checked: false },
+  { name: 'Mint', code: '#98FB98', checked: false },
+  { name: 'Sky Blue', code: '#87CEEB', checked: false },
+  { name: 'Coral', code: '#FF6F61', checked: false },
+  { name: 'Lilac', code: '#C8A2C8', checked: false },
+  { name: 'Aqua', code: '#00FFFF', checked: false }
 ];
 
 let formDefault: Todo = {
@@ -51,7 +51,7 @@ export const FormTodo: React.FC<Props> = ({ id }) => {
     const value = event?.target.value as Todo['color']
     const name = event?.target.name
     
-    const newColors = colorPalette.map(color => ({...color, cheked: color.name === name}))
+    const newColors = colorPalette.map(color => ({...color, checked: color.name === name}))
     
     setColors(newColors)
     setForm({
@@ -85,9 +85,9 @@ export const FormTodo: React.FC<Props> = ({ id }) => {
     formDefault = newForm
   }
 
-  function handleSubmit() {
-    if(isEdit) {
-  
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if(isEdit) {    
       const newTodos = todos.map(todo => {
         if(todo.id === id) {
           return {
@@ -116,9 +116,11 @@ export const FormTodo: React.FC<Props> = ({ id }) => {
       onSubmit={handleSubmit}
       style={{backgroundColor: `${form.color}`}}
     >
-      <button type='button' className='todo-form__close' onClick={handleBack}>
-        <GrFormClose/>
-      </button>  
+      <div className='todo-form__option'>
+        <button type='button' className='btn todo-form__close' onClick={handleBack}>
+          <GrFormClose/>
+        </button>  
+      </div>  
       <label className='todo-form__title'>
         Que tienes que hacer?
         <input
@@ -142,28 +144,35 @@ export const FormTodo: React.FC<Props> = ({ id }) => {
         </textarea>
       </label>
       <div className='todo-form__color'>
-        {colors.map(color =>(
-           <label key={color.name} style={{ background: `${color.code}` }}>
-           <input
-             name={color.name}
-             value={color.code}
-             type='checkbox'
-             checked={color.cheked}
-             onChange={changeColor}
-           />
-         </label>
-        ))}
+        {colors.map(color => { 
+          return(
+           <label className='todo-form__color-label' key={color.name} style={{ borderColor: `${color.code}` }}>
+              <input
+                className='todo-form__color-picker'
+                name={color.name}
+                value={color.code}
+                type='checkbox'
+                checked={color.checked}
+                onChange={changeColor}
+              />
+              <style>
+                {`.todo-form__color-picker[type="checkbox"]::before {  
+                  box-shadow: inset 1em 1em ${form.color}
+                }`}
+              </style>
+          </label>
+        )})}
       </div>
 
       <div className='todo-form__buttons'>
         <button
           type='button'
-          className='todo-form__btn todo-form__btn--close' 
+          className='btn todo-form__btn--close' 
           onClick={handleBack}>
             Cancelar
         </button>
         <button
-          className='todo-form__btn todo-form__btn--submit' 
+          className='btn todo-form__btn--submit' 
           type='submit'>
           {isEdit ? 'Editar' : 'Crear'}
         </button>

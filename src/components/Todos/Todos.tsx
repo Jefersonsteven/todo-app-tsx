@@ -21,7 +21,7 @@ export const Todos = () => {
   }, [filter])
 
   return (
-    <div className='todos'>
+    <ul className='todos'>
       {loading ? <p>Cargando ...</p> : null}
       {todos.length === 0 && filter === 'total' && search === '' ? <p>Crea una tarea !!</p> : null}
       {todos.length === 0 && filter === 'pending' ? <p>No tienes ninguna tarea pendiente</p> : null}
@@ -31,7 +31,7 @@ export const Todos = () => {
       {todos
         .sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? -1 : 1))
         ?.map(({id, title, color, description, completed}) => (
-        <li key={id} className='todos__todo'>
+        <li key={id} className='todos__todo' style={{backgroundColor: `${color}`}}>
           <TodoItem
             title={title}
             id={id}
@@ -41,6 +41,6 @@ export const Todos = () => {
           />
         </li>
       ))}
-    </div>
+    </ul>
   )
 }

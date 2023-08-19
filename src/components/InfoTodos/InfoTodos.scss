@@ -10,4 +10,8 @@
     font-weight: 400;
     box-shadow: -2px 2px 2px 0px rgba(48, 48, 48, 0.176);
   }
+  &__not-select:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
+  }
 }

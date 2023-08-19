@@ -1,0 +1,99 @@
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 90dvw;
+  &__option {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__close {
+    background-color: transparent;
+  }
+  &__close:hover {
+    cursor: pointer;
+    & svg path {
+      stroke: rgb(187, 86, 86)
+    }
+  }
+  &__description, &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    & input, textarea {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgb(187, 187, 187);
+      outline: none;
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+  }
+  &__color-label {
+    padding: 2px;
+    border-radius: 3px;
+    border-width: 2px;
+    border-style: solid;
+}
+  &__color {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  &__color-picker {
+    width: 20px;
+    height: 20px;
+  }
+  &__color-picker[type="checkbox"] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    border-radius: 3px;
+    display: grid;
+    place-content: center;
+  }
+  &__color-picker[type="checkbox"]::before {
+    content: "";
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 3px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+  }
+  &__color-picker[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__btn--close, &__btn--submit {
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  &__btn--close {
+    background-color: rgb(187, 86, 86);
+    color: white;
+  }
+  &__btn--submit {
+    background-color: rgb(23, 97, 236);
+    color: white;
+  }
+  &__btn--close:hover {
+    background-color: rgb(157, 86, 86);
+  }
+  &__btn--submit:hover {
+    background-color: rgb(23, 67, 236);
+  }
+}

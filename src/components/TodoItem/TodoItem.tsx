@@ -1,14 +1,13 @@
 import { useContext, useState } from 'react'
 import { Todo, TodoContextType } from '../../types'
 import './TodoItem.scss'
-import { GrFormClose } from 'react-icons/gr'
+import { MdOutlineDelete } from 'react-icons/md'
 import {MdEdit} from 'react-icons/md'
 import { TodoContext } from '../../providers/TodoProvider'
 
 export const TodoItem: React.FC<Todo> = ({ 
   id, 
-  title, 
-  color, 
+  title,
   description, 
   completed
 }) => {
@@ -19,7 +18,8 @@ export const TodoItem: React.FC<Todo> = ({
     setTodos, 
     setFilter,
     setOpenEditModal,
-    setIdTodoEdit
+    setIdTodoEdit,
+    filterTodos
   } = useContext<TodoContextType>(TodoContext)
 
   const [openModal, setOpenModal] = useState(false)
@@ -38,7 +38,7 @@ export const TodoItem: React.FC<Todo> = ({
   }
 
   function handleCheckTodo () {
-    const newTodos = todos.map(todo => {
+    const newTodos = filterTodos.map(todo => {
       if(todo.id === id) {
         return {
           ...todo,
@@ -48,24 +48,24 @@ export const TodoItem: React.FC<Todo> = ({
       return todo
     })
 
-    setFilter('total')
     setFilterTodos(newTodos)
     setTodos(newTodos)
+    setFilter('total')
   }
 
   return (
     <>
-    <div className='todo' style={{backgroundColor: `${color}`}}>
+    <div className='todo'>
       <div className='todo__options'>
-        <input type="checkbox" checked={completed} onChange={handleCheckTodo}/>
-        <button className='todo__delete' onClick={() => setOpenModal(currentOpen => !currentOpen)}>
-          <GrFormClose/>
+        <input className='todo__check' type="checkbox" checked={completed} onChange={handleCheckTodo}/>
+        <button className='btn todo__delete' onClick={() => setOpenModal(currentOpen => !currentOpen)}>
+          <MdOutlineDelete/>
         </button>
       </div>
-      <h2 className='todo__title'>{title}</h2>
-      <p className='todo__description'>{description}</p>
+      <h2 className={`todo__title ${completed ? 'todo__text--complete' : ''}`}>{title}</h2>
+      <p className={`todo__description ${completed ? 'todo__text--complete' : ''}`}>{description}</p>
       <div className='todo__options2'>
-        <button className='todo__edit' onClick={handleEditTodo}>
+        <button className='btn todo__edit' onClick={handleEditTodo}>
           <MdEdit/>
         </button>
       </div>

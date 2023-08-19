@@ -1,0 +1,13 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  &__todo {
+    padding: 20px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+  }
+}
